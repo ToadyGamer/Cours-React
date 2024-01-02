@@ -1,11 +1,11 @@
-import './App.css'
-import ModifyProfile from './ModifyProfile.tsx'
+import '../App.css'
 
+import { useState } from 'react';
 import { Card } from 'flowbite-react';
 
 function Profile() {
 
-var data = [
+const data = [
 	{
 		"prenom": "Lysandra",
 		"phone": "(522) 364-2659"
@@ -20,10 +20,53 @@ var data = [
 	}
 ];
 
+const [employes, SetEmployes] = useState(data);
+const [visible, SetVisibility] = useState(false);
+const [prenom, SetPrenom] = useState("");
+const [phone, SetPhone] = useState("");
+const [employe, SetEmploye] = useState(-1);
+
+  function ModifyAProfile(i : number){
+    if(visible)
+    {
+      if(employe == i) SetVisibility(false);
+      else{
+        SetEmploye(i);
+  
+        SetPrenom(data[i].prenom);
+        SetPhone(data[i].phone);
+  
+        SetVisibility(true);
+      }
+    }
+    else{
+        SetEmploye(i);
+  
+        SetPrenom(data[i].prenom);
+        SetPhone(data[i].phone);
+  
+        SetVisibility(true);
+    }
+  }
+
+  function Submit() {
+    let newPrenom = document.getElementsByName('newPrenom')[0] as HTMLInputElement;
+    let newPhone = document.getElementsByName('newPhone')[0] as HTMLInputElement;
+  
+    let updatedEmployes = [...employes];
+  
+    updatedEmployes[employe].prenom = newPrenom.value;
+    updatedEmployes[employe].phone = newPhone.value;
+  
+    SetEmployes(updatedEmployes);
+
+    SetVisibility(false);
+  }
+
   return (
     <>
       <ul className='Employes'>
-        {data.map((element, i) =>
+        {employes.map((element, i) =>
         <>
           <li className='Employe'>
             <Card href="#" className="max-w-sm">
@@ -34,12 +77,33 @@ var data = [
               Prenom : {element.prenom}<br />
               Téléphone : {element.phone}<br />
             </p>
-            <button onClick={() => <ModifyProfile/> }>Modifier l'employe</button>
+            <button onClick={() =>  ModifyAProfile(i)}>Modifier l'employe</button>
           </Card>
           </li>
         </>
         )}
       </ul>
+
+      <br />
+      <br />  
+      <br />
+      <br />  
+
+      {visible &&
+      <Card href="#" className="max-w-sm form">
+        <p className="font-normal text-gray-700 dark:text-gray-400">
+          <form onSubmit={Submit}>
+            <label>
+              Prenom : <input type="text" defaultValue={prenom} name='newPrenom'/>
+            </label> <br /> <br />
+            <label>
+              Phone : <input type="text" defaultValue={phone} name='newPhone'/>
+            </label> <br /> <br />
+          <button type="submit">Modifier</button>
+          </form>
+        </p>
+      </Card>
+    }
     </>
   )
 }

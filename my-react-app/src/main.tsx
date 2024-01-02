@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Header from './Header.tsx'
+import Header from './HeaderFooter/Header.tsx'
 import App from './App.tsx'
-import Profile from './Profile.tsx'
-import ModifyProfile from './ModifyProfile.tsx'
-import Footer from './Footer.tsx'
+import Profile from './Profile/Profile.tsx'
+import Footer from './HeaderFooter/Footer.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -16,9 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <br />
     <br />
     <Profile/>
-    <br />
-    <br />
-    <ModifyProfile/>
     <br />
     <br />
     <Footer/>
