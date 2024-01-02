@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Header from './HeaderFooter/Header.tsx'
 import App from './App.tsx'
-import Profile from './Main/Profile.tsx'
+import Profile from './Profile/Profile.tsx'
 import Footer from './HeaderFooter/Footer.tsx'
 import './index.css'
 

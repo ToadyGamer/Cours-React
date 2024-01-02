@@ -33,32 +33,36 @@ const [employe, SetEmploye] = useState(-1);
       else{
         SetEmploye(i);
   
-        SetPrenom(data[i].prenom);
-        SetPhone(data[i].phone);
+        SetPrenom(employes[i].prenom);
+        SetPhone(employes[i].phone);
       }
     }
     else{
         SetEmploye(i);
   
-        SetPrenom(data[i].prenom);
-        SetPhone(data[i].phone);
+        SetPrenom(employes[i].prenom);
+        SetPhone(employes[i].phone);
   
         SetVisibility(true);
     }
   }
 
   function Submit() {
-    let newPrenom = document.getElementsByName('newPrenom')[0] as HTMLInputElement;
-    let newPhone = document.getElementsByName('newPhone')[0] as HTMLInputElement;
-  
     let updatedEmployes = [...employes];
   
-    updatedEmployes[employe].prenom = newPrenom.value;
-    updatedEmployes[employe].phone = newPhone.value;
+    updatedEmployes[employe].prenom = prenom;
+    updatedEmployes[employe].phone = phone;
   
     SetEmployes(updatedEmployes);
 
     SetVisibility(false);
+  }
+
+  const PrenomHandler = (e:  React.ChangeEvent<HTMLInputElement>) => {
+    SetPrenom(e.target.value);
+  }
+  const PhoneHandler = (e:  React.ChangeEvent<HTMLInputElement>) => {
+    SetPhone(e.target.value);
   }
 
   return (
@@ -92,12 +96,13 @@ const [employe, SetEmploye] = useState(-1);
         <p className="font-normal text-gray-700 dark:text-gray-400">
           <form onSubmit={Submit}>
             <label>
-              Prenom : <input type="text" defaultValue={prenom} key={prenom} name='newPrenom'/>
+              Prenom : <input type="text" value={prenom} onChange={PrenomHandler} name='newPrenom'/>
             </label> <br /> <br />
             <label>
-              Phone : <input type="text" defaultValue={phone} key={phone} name='newPhone'/>
+              Phone : <input type="text" value={phone} onChange={PhoneHandler} name='newPhone'/>
             </label> <br /> <br />
-          <button type="submit">Modifier</button>
+
+            <button type='submit'>Modifier</button>
           </form>
         </p>
       </Card>
