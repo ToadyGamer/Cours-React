@@ -35,8 +35,6 @@ const [employe, SetEmploye] = useState(-1);
   
         SetPrenom(data[i].prenom);
         SetPhone(data[i].phone);
-  
-        SetVisibility(true);
       }
     }
     else{
@@ -69,7 +67,7 @@ const [employe, SetEmploye] = useState(-1);
         {employes.map((element, i) =>
         <>
           <li className='Employe'>
-            <Card href="#" className="max-w-sm">
+            <Card href="#" className="max-w-sm listEmploye">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               EMPLOYE N°{i + 1}
             </h5>
@@ -94,16 +92,18 @@ const [employe, SetEmploye] = useState(-1);
         <p className="font-normal text-gray-700 dark:text-gray-400">
           <form onSubmit={Submit}>
             <label>
-              Prenom : <input type="text" defaultValue={prenom} name='newPrenom'/>
+              Prenom : <input type="text" defaultValue={prenom} key={prenom} name='newPrenom'/>
             </label> <br /> <br />
             <label>
-              Phone : <input type="text" defaultValue={phone} name='newPhone'/>
+              Phone : <input type="text" defaultValue={phone} key={phone} name='newPhone'/>
             </label> <br /> <br />
           <button type="submit">Modifier</button>
           </form>
         </p>
       </Card>
-    }
+      }
+
+      
     </>
   )
 }

@@ -13,13 +13,23 @@ html, body{
   width: 100%;
 }
 
-.Employes{
-  display:flex;
+@media screen and (min-width: 800px) {
+  .Employes{
+    display:flex;
+  }
+  .Employe{
+    float:left;
+    margin: auto;
+  }
 }
-
-.Employe{
-  float:left;
-  margin: auto;
+@media screen and (max-width: 800px) {
+  .Employe{
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .listEmploye{
+    margin: auto;
+  }
 }
 
 .form{
