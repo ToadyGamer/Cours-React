@@ -13,11 +13,7 @@ function ChangeName(){
 
   return (
     <>
-      <br />
-      <br />
       <h1>EMPLOYES DE MACHIN TRUC BIDULE</h1>
-      <br />
-      <br />
     </>
   )
 }
