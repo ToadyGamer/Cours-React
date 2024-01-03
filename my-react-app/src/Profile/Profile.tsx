@@ -1,6 +1,7 @@
 import '../App.css'
 
-import { useState } from 'react';
+import AddProfile from './AddProfile.tsx'
+import { useState, useEffect } from 'react';
 import { Card } from 'flowbite-react';
 
 function Profile() {
@@ -26,6 +27,15 @@ const [prenom, SetPrenom] = useState("");
 const [phone, SetPhone] = useState("");
 const [employe, SetEmploye] = useState(-1);
 
+  function AddAEmploye(newEmploye : {prenom: string; phone: string; }){
+
+    let updatedEmployes = [...employes];
+  
+    updatedEmployes.push(newEmploye);
+  
+    SetEmployes(updatedEmployes);
+  }
+
   function ModifyAProfile(i : number){
     if(visible)
     {
@@ -46,6 +56,12 @@ const [employe, SetEmploye] = useState(-1);
         SetVisibility(true);
     }
   }
+
+  //A CHAQUE FOIS QU'UNE FONCTION EST APPELLE, ON UTILISE LE USEEFFECT.
+  //D'OU L'IMPORTANCE DE BIEN SEPARER SES PAGES EN DIFFERENTS TSX
+  useEffect(() => {
+    console.log(`Modification d'un employe n°${employe} !`);
+  });
 
   function Submit() {
     let updatedEmployes = [...employes];
@@ -71,7 +87,7 @@ const [employe, SetEmploye] = useState(-1);
         {employes.map((element, i) =>
         <>
           <li className='Employe'>
-            <Card href="#" className="max-w-sm listEmploye">
+            <Card className="max-w-sm listEmploye">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               EMPLOYE N°{i + 1}
             </h5>
@@ -92,9 +108,9 @@ const [employe, SetEmploye] = useState(-1);
       <br />  
 
       {visible &&
-      <Card href="#" className="max-w-sm form">
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          <form onSubmit={Submit}>
+      <Card className="max-w-sm form">
+        <form onSubmit={Submit}>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
             <label>
               Prenom : <input type="text" value={prenom} onChange={PrenomHandler} name='newPrenom'/>
             </label> <br /> <br />
@@ -103,11 +119,12 @@ const [employe, SetEmploye] = useState(-1);
             </label> <br /> <br />
 
             <button type='submit'>Modifier</button>
-          </form>
-        </p>
+          </p>
+        </form>
       </Card>
       }
 
+      <AddProfile AddEmploye={AddAEmploye}/>
       
     </>
   )
