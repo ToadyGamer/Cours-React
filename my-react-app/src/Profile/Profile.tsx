@@ -61,7 +61,7 @@ const [employe, SetEmploye] = useState(-1);
   //D'OU L'IMPORTANCE DE BIEN SEPARER SES PAGES EN DIFFERENTS TSX
   useEffect(() => {
     console.log(`Modification d'un employe n°${employe} !`);
-  });
+  },[prenom, phone]);
 
   function Submit() {
     let updatedEmployes = [...employes];
@@ -123,6 +123,9 @@ const [employe, SetEmploye] = useState(-1);
         </form>
       </Card>
       }
+
+      <br />
+      <br />
 
       <AddProfile AddEmploye={AddAEmploye}/>
       
